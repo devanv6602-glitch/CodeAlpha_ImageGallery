@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A modern, responsive image gallery with lightbox, filters, and search.">
+  <title>Image Gallery</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Preconnect for faster image loading -->
+  <link rel="preconnect" href="https://images.unsplash.com">
+</head>
+<body>
+  <!-- Skip link for keyboard users -->
+  <a href="#gallery" class="skip-link">Skip to gallery</a>
+
+  <!-- Site header with title and theme toggle -->
+  <header class="header">
+    <div class="container header__inner">
+      <div class="header__brand">
+        <h1 class="header__title">Image Gallery</h1>
+        <p class="header__subtitle">Browse, search, and explore stunning photography</p>
+      </div>
+      <button
+        type="button"
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Toggle dark mode"
+        title="Toggle dark/light mode"
+      >
+        <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">☀️</span>
+        <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <!-- Search and filter controls -->
+      <section class="controls" aria-label="Gallery filters">
+        <div class="search-box">
+          <label for="searchInput" class="visually-hidden">Search images</label>
+          <input
+            type="search"
+            id="searchInput"
+            class="search-box__input"
+            placeholder="Search by title or keyword..."
+            autocomplete="off"
+          >
+          <span class="search-box__icon" aria-hidden="true">🔍</span>
+        </div>
+
+        <div class="filters" role="group" aria-label="Category filters">
+          <button type="button" class="filter-btn filter-btn--active" data-category="all">All</button>
+          <button type="button" class="filter-btn" data-category="nature">Nature</button>
+          <button type="button" class="filter-btn" data-category="animals">Animals</button>
+          <button type="button" class="filter-btn" data-category="technology">Technology</button>
+          <button type="button" class="filter-btn" data-category="food">Food</button>
+          <button type="button" class="filter-btn" data-category="travel">Travel</button>
+        </div>
+
+        <p class="results-count" id="resultsCount" aria-live="polite"></p>
+      </section>
+
+      <!-- Gallery grid — populated by JavaScript -->
+      <section id="gallery" class="gallery" aria-label="Image gallery"></section>
+
+      <!-- Empty state when no images match filters -->
+      <div class="empty-state hidden" id="emptyState">
+        <p class="empty-state__title">No images found</p>
+        <p class="empty-state__text">Try a different search term or category.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Lightbox overlay -->
+  <div class="lightbox hidden" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption">
+    <button type="button" class="lightbox__close" id="lightboxClose" aria-label="Close lightbox">&times;</button>
+
+    <button type="button" class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image">
+      &#10094;
+    </button>
+
+    <div class="lightbox__content">
+      <img class="lightbox__image" id="lightboxImage" src="" alt="">
+      <p class="lightbox__caption" id="lightboxCaption"></p>
+      <p class="lightbox__counter" id="lightboxCounter" aria-live="polite"></p>
+    </div>
+
+    <button type="button" class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image">
+      &#10095;
+    </button>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Image Gallery. Sample images from <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a>.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
